@@ -1,0 +1,46 @@
+body {
+    background-image: url(C:/Users/vicky/WebMobileProgramming/Part0/kaalitausta.jpg);
+}
+
+div {
+    width: max-content;
+    height: max-content;
+    border: limegreen;
+
+    width: 600px;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    padding: 0 20px 20px 20px;
+    border: 5px solid tan;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    color: salmon;
+    font-size: larger;
+}
+
+p, li, h1, h2, h3{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ainekset {color: darkcyan;}
+
+.kaali {
+    font-style: oblique;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border-style: groove;
+}
+
+#ainesosanNimi {background-color: palegreen;}
+#maara {background-color: thistle;}

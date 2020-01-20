@@ -2,81 +2,90 @@
 <html>
     <head>
         <title>Kaalilaatikko</title>
+        <link href="C:/Users/vicky/WebMobileProgramming/Part0/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Kaalilaatikko ala Vicky</h1>
-        <img src="C:/Users/vicky/WebMobile/Part0/kerakaali.jpg" alt="Kerakaali">
-        <p></p>
-        <p>Tarkat ohjeet: <a href="https://yhteishyva.fi/reseptit/kaalilaatikko/recipe-4544">  Kaalilaatikko Yhteishyva </a> </p>
-
-        <!--leipateksti, sisaltaa listan-->
-        <p>
-            <h2>AINEKSET:</h2>
-            <ul>
-                <li> 1 kg kaalia </li>
-                <li> 1 1/2 tl suolaa </li>
-                <li> 1/2 tl pippuria </li>
-            </ul>
-
-            <h3>PINNALLE:</h3>
-            <ul>
-                <li> 2-3 rkl siirappia </li>
-            </ul>
-
-            <h2> Työvaiheet</h2>
-            <ol>
-                <li>Ota kaalii ja mausta pikkasen. Pyöräytä pannulla tai voi kans raakana vetää. </li>
-                <li>Laita päälle vähä siirappii. Se on hyvää!</li>
-                <li>Laita laatikkoo ni saat kaalilaatikkoo</li>
-            </ol>
-        </p>
-
-        <h2>Lisää puuttuvat aineet listaan ja tilaa Prismasta!</h2>
-
-        <!--Lomake-->
-        <form>
-            <form>
-                <label>Tilaajan nimi: </label>
-                <input>
-            </form>
-            <form>
-                <label>Tilattava tuote: </label>
-                <input>
-            </form>
-            <form>
-                <label>Tuotteen määrä: </label>
-                <input>
-            </form>
-            <form>
-                <label>Kotiinkuljetus</label>
-                <select>
-                    <option>kyllä</option>
-                    <option>ei</option>
-                </select>
-            </form>
-            <button>TILAA</button>
-        </form>
-
-
-        <!--Taulukko-->
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Ainesosan nimi</th>
-                    <th scope="col">Määrä</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Kaali</td>
-                    <td>2 kg</td>
-                </tr>
-                <tr>
-                    <td>Suola</td>
-                    <td>1 kg</td>
-                </tr>
-            </tbody>
-        </table>
         
+        <!--Resepti-->
+        <div id="resepti">
+            <h1>Kaalilaatikko ala Vicky</h1>
+            <img src="C:/Users/vicky/WebMobileProgramming/Part0/kerakaali.jpg" alt="Kerakaali">
+            <p></p>
+            <p>Tarkat ohjeet: <a href="https://yhteishyva.fi/reseptit/kaalilaatikko/recipe-4544">  Kaalilaatikko Yhteishyva </a> </p>
+    
+            <!--leipateksti, sisaltaa listan-->
+            <p>
+                <h2>AINEKSET:</h2>
+                <ul class="ainekset">
+                    <li class="ainekset kaali"> 1 kg kaalia </li>
+                    <li> 1 1/2 tl suolaa </li>
+                    <li> 1/2 tl pippuria </li>
+                </ul>
+    
+                <h3>PINNALLE:</h3>
+                <ul class="ainekset">
+                    <li> 2-3 rkl siirappia </li>
+                </ul>
+    
+                <h2> Työvaiheet</h2>
+                <ol>
+                    <li>Ota kaalii ja mausta pikkasen. Pyöräytä pannulla tai voi kans raakana vetää. </li>
+                    <li>Laita päälle vähä siirappii. Se on hyvää!</li>
+                    <li>Laita laatikkoo ni saat kaalilaatikkoo</li>
+                </ol>
+            </p>
+        </div>
+
+        <div id="lomaketaulukko">
+            <!--Lomake-->
+            <h2>Lisää puuttuvat aineet listaan ja tilaa Prismasta!</h2>
+
+            <form>
+                <form>
+                    <label>Tilaajan nimi: </label>
+                    <input>
+                </form>
+                <form>
+                    <label>Tilattava tuote: </label>
+                    <input>
+                </form>
+                <form>
+                    <label>Tuotteen määrä: </label>
+                    <input>
+                </form>
+                <form>
+                    <label>Kotiinkuljetus</label>
+                    <select>
+                        <option>kyllä</option>
+                        <option>ei</option>
+                    </select>
+                </form>
+                <button>TILAA</button>
+            </form> 
+
+            <p></p>
+
+
+            <!--Taulukko-->
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" id="ainesosanNimi">Ainesosan nimi</th>
+                        <th scope="col" id="maara">Määrä</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kaali</td>
+                        <td>2 kg</td>
+                    </tr>
+                    <tr>
+                        <td>Suola</td>
+                        <td>1 kg</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </body>
 </html>
