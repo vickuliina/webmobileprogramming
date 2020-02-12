@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const Nappula = ({ onClick, text }) => (
@@ -7,19 +7,26 @@ const Nappula = ({ onClick, text }) => (
     </button>
 )
 
-const App = () => {
+const App = (props) => {
+
+    const [ valueGood, setGood ] = useState(0)
+    const [ valueNeutral, setNeutral ] = useState(0)
+    const [ valuePoor, setPoor ] = useState(0)
+
+    const setValue = (value) => () => setGood(value)
 
     return (
         <div>
             <h1>anna palautetta</h1>
-            <Nappula text='hyvä'></Nappula>
-            <Nappula text='nautraali'></Nappula>
-            <Nappula text='huono'></Nappula>
+
+            <Nappula onClick={setValue(valueGood + 1)} text='hyvä'></Nappula>
+            <Nappula onClick={() => setNeutral(valueNeutral + 1)} text='nautraali'></Nappula>
+            <Nappula onClick={() => setPoor(valuePoor + 1)} text='huono'></Nappula>
             <h1>statistiikka</h1>
 
-            <p>hyvä 6</p>
-            <p>neutraali 3</p> 
-            <p>huono 2</p>       
+            <p>hyvä {valueGood}</p>
+            <p>neutraali {valueNeutral}</p> 
+            <p>huono {valuePoor}</p>       
         </div>
     )
 }
