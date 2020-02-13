@@ -7,6 +7,7 @@ const Nappula = ({ onClick, text }) => (
     </button>
 )
 
+
 class App extends React.Component{
 
     constructor(props) {
@@ -16,9 +17,17 @@ class App extends React.Component{
           neutraaliCounter: 0,
           huonoCounter: 0,
           summa: 0,
-          keskiArvoSumma: 0,
+          keskiarvoSumma: 0,
+          keskiarvo: 0,
           postiviivisetSumma: 0
         }
+    }
+
+    laskeKeskiarvo = function(a, b) {
+        if(b === 0) {
+            return 0
+        }
+        return (a / b)
     }
 
     asetaArvo = (id) => () => {
@@ -26,25 +35,22 @@ class App extends React.Component{
 
         if(id === 'hyva') {
             const arvo = this.state.hyvaCounter + 1
-            
             return (
-                this.setState({ hyvaCounter: arvo}),
-                this.setState({ keskiArvoSumma: this.state.keskiArvoSumma + 1 })
+                this.setState({ hyvaCounter: arvo })
             )
         }
 
         if(id === 'neutraali') {
             const arvo = this.state.neutraaliCounter + 1
             return (
-                this.setState({ neutraaliCounter: arvo})
+                this.setState({ neutraaliCounter: arvo })
             )
         }
 
         if(id === 'huono') {
             const arvo = this.state.huonoCounter + 1
             return (
-                this.setState({ huonoCounter: arvo}),
-                this.setState({ keskiArvoSumma: this.state.keskiArvoSumma - 1 })
+                this.setState({ huonoCounter: arvo })
             )
         }
     }
@@ -64,9 +70,8 @@ class App extends React.Component{
                 <p>neutraali {this.state.neutraaliCounter}</p>
                 <p>huono {this.state.huonoCounter}</p>
                 
-                <p>summa {this.state.summa}</p>
-
-                <p>keskiarvo {this.state.keskiArvoSumma / this.state.summa}</p>
+                <p>keskiarvo {this.laskeKeskiarvo(this.state.hyvaCounter - this.state.huonoCounter, this.state.summa)}</p>
+                
                 <p>positiivisia </p>     
             </div>
         )
