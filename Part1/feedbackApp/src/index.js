@@ -15,14 +15,16 @@ class App extends React.Component{
           counter1: 0,
           counter2: 0,
           counter3: 0,
-          summa: 0
+          summa: 0,
+          keskiArvoSumma: 0
         }
     }
 
     asetaHyvaArvo = () => {
         return (
             this.setState({ counter1: this.state.counter1 + 1 }),
-            this.setState({ summa: this.state.summa + 1 })
+            this.setState({ summa: this.state.summa + 1 }),
+            this.setState({ keskiArvoSumma: this.state.keskiArvoSumma + 1 })
         )
     }
 
@@ -36,7 +38,8 @@ class App extends React.Component{
     asetaHuonoArvo = () =>{
         return (
             this.setState({ counter3: this.state.counter3 + 1 }),
-            this.setState({ summa: this.state.summa + 1 })
+            this.setState({ summa: this.state.summa + 1 }),
+            this.setState({ keskiArvoSumma: this.state.keskiArvoSumma - 1 })
         )
     }
 
@@ -57,7 +60,7 @@ class App extends React.Component{
                 
                 <p>summa {this.state.summa}</p>
 
-                <p>keskiarvo </p>
+                <p>keskiarvo {this.state.keskiArvoSumma / this.state.summa}</p>
                 <p>positiivisia </p>     
             </div>
         )
