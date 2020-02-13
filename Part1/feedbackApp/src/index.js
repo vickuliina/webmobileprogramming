@@ -12,17 +12,18 @@ class App extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-          counter1: 0,
-          counter2: 0,
-          counter3: 0,
+          hyvaCounter: 0,
+          neutraaliCounter: 0,
+          huonoCounter: 0,
           summa: 0,
-          keskiArvoSumma: 0
+          keskiArvoSumma: 0,
+          postiviivisetSumma: 0
         }
     }
 
     asetaHyvaArvo = () => {
         return (
-            this.setState({ counter1: this.state.counter1 + 1 }),
+            this.setState({ hyva: this.state.hyvaCounter + 1 }),
             this.setState({ summa: this.state.summa + 1 }),
             this.setState({ keskiArvoSumma: this.state.keskiArvoSumma + 1 })
         )
@@ -30,14 +31,14 @@ class App extends React.Component{
 
     asetaNeutraaliArvo = () => {
         return (
-            this.setState({ counter2: this.state.counter2 + 1 }),
+            this.setState({ neutraaliCounter: this.state.neutraaliCounter + 1 }),
             this.setState({ summa: this.state.summa + 1 })
         )
     }
 
     asetaHuonoArvo = () =>{
         return (
-            this.setState({ counter3: this.state.counter3 + 1 }),
+            this.setState({ huonoCounter: this.state.huonoCounter + 1 }),
             this.setState({ summa: this.state.summa + 1 }),
             this.setState({ keskiArvoSumma: this.state.keskiArvoSumma - 1 })
         )
@@ -54,9 +55,9 @@ class App extends React.Component{
                 
                 <h1>statistiikka</h1>
 
-                <p>hyvä {this.state.counter1}</p>
-                <p>neutraali {this.state.counter2}</p>
-                <p>huono {this.state.counter3}</p>
+                <p>hyvä {this.state.hyvaCounter}</p>
+                <p>neutraali {this.state.neutraaliCounter}</p>
+                <p>huono {this.state.huonoCounter}</p>
                 
                 <p>summa {this.state.summa}</p>
 
