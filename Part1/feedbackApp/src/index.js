@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 
 const Nappula = ({ onClick, text }) => (
@@ -7,33 +7,64 @@ const Nappula = ({ onClick, text }) => (
     </button>
 )
 
-const App = (props) => {
+class App extends React.Component{
 
-    const [ valueGood, setGood ] = useState(0)
-    const [ valueNeutral, setNeutral ] = useState(0)
-    const [ valuePoor, setPoor ] = useState(0)
+    constructor(props) {
+        super(props)
+        this.state = {
+          counter1: 0,
+          counter2: 0,
+          counter3: 0,
+          summa: 0
+        }
+    }
 
-    const setGoodValue = (value) => () => setGood(value)
-    const setNeutralValue = (value) => () => setNeutral(value)
-    const setPoorValue = (value) => () => setPoor(value)
+    asetaHyvaArvo = () => {
+        return (
+            this.setState({ counter1: this.state.counter1 + 1 }),
+            this.setState({ summa: this.state.summa + 1 })
+        )
+    }
 
-    return (
-        <div>
-            <h1>anna palautetta</h1>
+    asetaNeutraaliArvo = () => {
+        return (
+            this.setState({ counter2: this.state.counter2 + 1 }),
+            this.setState({ summa: this.state.summa + 1 })
+        )
+    }
 
-            <Nappula onClick={setGoodValue(valueGood + 1)} text='hyvä'></Nappula>
-            <Nappula onClick={setNeutralValue(valueNeutral + 1)} text='nautraali'></Nappula>
-            <Nappula onClick={setPoorValue(valuePoor + 1)} text='huono'></Nappula>
-            <h1>statistiikka</h1>
+    asetaHuonoArvo = () =>{
+        return (
+            this.setState({ counter3: this.state.counter3 + 1 }),
+            this.setState({ summa: this.state.summa + 1 })
+        )
+    }
 
-            <p>hyvä {valueGood}</p>
-            <p>neutraali {valueNeutral}</p> 
-            <p>huono {valuePoor}</p>       
-        </div>
-    )
+    render() {
+
+        return (
+            <div>
+                <h1>anna palautetta</h1>
+                <Nappula onClick={this.asetaHyvaArvo} text='hyvä'></Nappula>
+                <Nappula onClick={this.asetaNeutraaliArvo} text='neutraali'></Nappula>
+                <Nappula onClick={this.asetaHuonoArvo} text='huono'></Nappula>
+                
+                <h1>statistiikka</h1>
+
+                <p>hyvä {this.state.counter1}</p>
+                <p>neutraali {this.state.counter2}</p>
+                <p>huono {this.state.counter3}</p>
+                
+                <p>summa {this.state.summa}</p>
+
+                <p>keskiarvo </p>
+                <p>positiivisia </p>     
+            </div>
+        )
+    }
 }
 
 ReactDOM.render(
-    <App />,
+    <App/>,
     document.getElementById('root')
 )
