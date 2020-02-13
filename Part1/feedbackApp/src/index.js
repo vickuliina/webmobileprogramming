@@ -21,27 +21,32 @@ class App extends React.Component{
         }
     }
 
-    asetaHyvaArvo = () => {
-        return (
-            this.setState({ hyva: this.state.hyvaCounter + 1 }),
-            this.setState({ summa: this.state.summa + 1 }),
-            this.setState({ keskiArvoSumma: this.state.keskiArvoSumma + 1 })
-        )
-    }
+    asetaArvo = (id) => () => {
+        this.setState({ summa: this.state.summa + 1 })
 
-    asetaNeutraaliArvo = () => {
-        return (
-            this.setState({ neutraaliCounter: this.state.neutraaliCounter + 1 }),
-            this.setState({ summa: this.state.summa + 1 })
-        )
-    }
+        if(id === 'hyva') {
+            const arvo = this.state.hyvaCounter + 1
+            
+            return (
+                this.setState({ hyvaCounter: arvo}),
+                this.setState({ keskiArvoSumma: this.state.keskiArvoSumma + 1 })
+            )
+        }
 
-    asetaHuonoArvo = () =>{
-        return (
-            this.setState({ huonoCounter: this.state.huonoCounter + 1 }),
-            this.setState({ summa: this.state.summa + 1 }),
-            this.setState({ keskiArvoSumma: this.state.keskiArvoSumma - 1 })
-        )
+        if(id === 'neutraali') {
+            const arvo = this.state.neutraaliCounter + 1
+            return (
+                this.setState({ neutraaliCounter: arvo})
+            )
+        }
+
+        if(id === 'huono') {
+            const arvo = this.state.huonoCounter + 1
+            return (
+                this.setState({ huonoCounter: arvo}),
+                this.setState({ keskiArvoSumma: this.state.keskiArvoSumma - 1 })
+            )
+        }
     }
 
     render() {
@@ -49,9 +54,9 @@ class App extends React.Component{
         return (
             <div>
                 <h1>anna palautetta</h1>
-                <Nappula onClick={this.asetaHyvaArvo} text='hyvä'></Nappula>
-                <Nappula onClick={this.asetaNeutraaliArvo} text='neutraali'></Nappula>
-                <Nappula onClick={this.asetaHuonoArvo} text='huono'></Nappula>
+                <Nappula onClick={this.asetaArvo('hyva')} text='hyvä'></Nappula>
+                <Nappula onClick={this.asetaArvo('neutraali')} text='neutraali'></Nappula>
+                <Nappula onClick={this.asetaArvo('huono')} text='huono'></Nappula>
                 
                 <h1>statistiikka</h1>
 
