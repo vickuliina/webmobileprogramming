@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './index.css'
 
 const Nappula = ({ onClick, text }) => (
     <button onClick={onClick}>
