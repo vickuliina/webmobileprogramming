@@ -9,20 +9,18 @@ const Button = ({ onClick, text }) => (
 )
 
 const Statistics = ({ good, neutral, poor, sum, laskeKeskiarvo, laskePositiiviset}) => (   
-    <p>
+    <div>
         <Statistic text='hyvä' value={good}></Statistic>
         <Statistic text='neutraali' value={neutral}></Statistic>
         <Statistic text='huono' value={poor}></Statistic>
 
-        keskiarvo {laskeKeskiarvo(good - poor, sum)}<br />       
-        positiivisia {laskePositiiviset(good, sum)}%     
-    </p> 
+        <Statistic text='keskiarvo' value={laskeKeskiarvo(good - poor, sum)}></Statistic>
+        <Statistic text='positiivisia' value={laskePositiiviset(good, sum)} text2='%'></Statistic>
+    </div>
 )
 
-const Statistic = ({ text, value}) => (
-    <li>
-        {text} {value}
-    </li>
+const Statistic = ({ text, value , text2 }) => (
+    <p>{text} {value} {text2}</p>
 )
 
 
