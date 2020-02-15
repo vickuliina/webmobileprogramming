@@ -22,16 +22,16 @@ class App extends React.Component{
 
     laskeKeskiarvo = function(a, b) {
         if(b === 0) {
-            return 0
+            return (0).toFixed(1)
         }
-        return (a / b) /*tahan pitaisi lisata desimaalit*/
+        return parseFloat(a / b).toFixed(1) /*tahan pitaisi lisata desimaalit*/
     }
 
     laskePositiiviset = function(a, b) {
         if(a === 0) {
-            return 0
+            return (0).toFixed(1)
         }
-        return (a / b) /*tahan pitaisi lisata desimaalinakyma*/
+        return (a*100 / b).toFixed(1)  /*tahan pitaisi lisata desimaalinakyma*/
     }
 
     asetaArvo = (id) => () => {
@@ -70,13 +70,15 @@ class App extends React.Component{
                 
                 <h1>statistiikka</h1>
 
-                <p>hyvä {this.state.hyvat}</p>
-                <p>neutraali {this.state.neutraalit}</p>
-                <p>huono {this.state.huonot}</p>
-                
-                <p>keskiarvo {this.laskeKeskiarvo(this.state.hyvat - this.state.huonot, this.state.summa)}</p>
-                
-                <p>positiivisia {this.laskePositiiviset(this.state.hyvat, this.state.neutraalit + this.state.huonot)}</p>     
+                <p>
+                    hyvä {this.state.hyvat}<br />
+                    neutraali {this.state.neutraalit}<br />
+                    huono {this.state.huonot}<br />
+                    
+                    keskiarvo {this.laskeKeskiarvo(this.state.hyvat - this.state.huonot, this.state.summa)}<br />
+                    
+                    positiivisia {this.laskePositiiviset(this.state.hyvat, this.state.summa)}%
+                </p>     
             </div>
         )
     }
