@@ -2,22 +2,38 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
-const Nappula = ({ onClick, text }) => (
+const Button = ({ onClick, text }) => (
     <button onClick={onClick}>
         {text}
     </button>
 )
 
+const Statistics = ({ good, neutral, poor, sum, laskeKeskiarvo, laskePositiiviset}) => (   
+    <p>
+        <Statistic text='hyvä' value={good}></Statistic>
+        <Statistic text='neutraali' value={neutral}></Statistic>
+        <Statistic text='huono' value={poor}></Statistic>
+
+        keskiarvo {laskeKeskiarvo(good - poor, sum)}<br />       
+        positiivisia {laskePositiiviset(good, sum)}%     
+    </p> 
+)
+
+const Statistic = ({ text, value}) => (
+    <li>
+        {text} {value}
+    </li>
+)
+
 
 class App extends React.Component{
-
     constructor(props) {
         super(props)
         this.state = {
-          hyvat: 0,
-          neutraalit: 0,
-          huonot: 0,
-          summa: 0,
+          good: 0,
+          neutral: 0,
+          poor: 0,
+          sum: 0,
         }
     }
 
@@ -25,37 +41,37 @@ class App extends React.Component{
         if(b === 0) {
             return (0).toFixed(1)
         }
-        return parseFloat(a / b).toFixed(1) /*tahan pitaisi lisata desimaalit*/
+        return parseFloat(a / b).toFixed(1)
     }
 
     laskePositiiviset = function(a, b) {
         if(a === 0) {
             return (0).toFixed(1)
         }
-        return (a*100 / b).toFixed(1)  /*tahan pitaisi lisata desimaalinakyma*/
+        return (a*100 / b).toFixed(1)
     }
 
-    asetaArvo = (id) => () => {
-        this.setState({ summa: this.state.summa + 1 })
+    setValue = (id) => () => {
+        this.setState({ sum: this.state.sum + 1 })
 
-        if(id === 'hyva') {
-            const arvo = this.state.hyvat + 1
+        if(id === 'good') {
+            const value = this.state.good + 1
             return (
-                this.setState({ hyvat: arvo })
+                this.setState({ good: value })
             )
         }
 
-        if(id === 'neutraali') {
-            const arvo = this.state.neutraalit + 1
+        if(id === 'neutral') {
+            const value = this.state.neutral + 1
             return (
-                this.setState({ neutraalit: arvo })
+                this.setState({ neutral: value })
             )
         }
 
-        if(id === 'huono') {
-            const arvo = this.state.huonot + 1
+        if(id === 'poor') {
+            const value = this.state.poor + 1
             return (
-                this.setState({ huonot: arvo })
+                this.setState({ poor: value })
             )
         }
     }
@@ -65,21 +81,21 @@ class App extends React.Component{
         return (
             <div>
                 <h1>anna palautetta</h1>
-                <Nappula onClick={this.asetaArvo('hyva')} text='hyvä'></Nappula>
-                <Nappula onClick={this.asetaArvo('neutraali')} text='neutraali'></Nappula>
-                <Nappula onClick={this.asetaArvo('huono')} text='huono'></Nappula>
-                
+                <Button onClick={this.setValue('good')} text='hyvä'></Button>
+                <Button onClick={this.setValue('neutral')} text='neutraali'></Button>
+                <Button onClick={this.setValue('poor')} text='huono'></Button>
+
                 <h1>statistiikka</h1>
 
-                <p>
-                    hyvä {this.state.hyvat}<br />
-                    neutraali {this.state.neutraalit}<br />
-                    huono {this.state.huonot}<br />
-                    
-                    keskiarvo {this.laskeKeskiarvo(this.state.hyvat - this.state.huonot, this.state.summa)}<br />
-                    
-                    positiivisia {this.laskePositiiviset(this.state.hyvat, this.state.summa)}%
-                </p>     
+                <Statistics 
+                    good={this.state.good}
+                    neutral={this.state.neutral}
+                    poor={this.state.poor}
+                    sum={this.state.sum}
+                    laskeKeskiarvo={this.laskeKeskiarvo}
+                    laskePositiiviset={this.laskePositiiviset}
+                ></Statistics>
+
             </div>
         )
     }
