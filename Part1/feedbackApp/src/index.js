@@ -99,7 +99,6 @@ class App extends React.Component {
                 <Button onClick={this.setValue('poor')} text='huono'></Button>
 
                 <h1>statistiikka</h1>
-
                 <Statistics 
                     good={this.state.good}
                     neutral={this.state.neutral}
