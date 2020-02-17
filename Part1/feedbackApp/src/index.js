@@ -8,16 +8,24 @@ const Button = ({ onClick, text }) => (
     </button>
 )
 
-const Statistics = ({ good, neutral, poor, sum, laskeKeskiarvo, laskePositiiviset}) => (   
-    <div>
-        <Statistic text='hyvä' value={good}></Statistic>
-        <Statistic text='neutraali' value={neutral}></Statistic>
-        <Statistic text='huono' value={poor}></Statistic>
+const Statistics = ({ good, neutral, poor, sum, laskeKeskiarvo, laskePositiiviset}) =>  {
+    if(sum === 0) {
+        return <p>ei yhtään palautetta annettu</p>
+    }
+    else {
+        return (
+            <div>
+                <Statistic text='hyvä' value={good}></Statistic>
+                <Statistic text='neutraali' value={neutral}></Statistic>
+                <Statistic text='huono' value={poor}></Statistic>
 
-        <Statistic text='keskiarvo' value={laskeKeskiarvo(good - poor, sum)}></Statistic>
-        <Statistic text='positiivisia' value={laskePositiiviset(good, sum)} text2='%'></Statistic>
-    </div>
-)
+                <Statistic text='keskiarvo' value={laskeKeskiarvo(good - poor, sum)}></Statistic>
+                <Statistic text='positiivisia' value={laskePositiiviset(good, sum)} text2='%'></Statistic>
+            </div>
+        )
+    }
+}
+
 
 const Statistic = ({ text, value , text2 }) => (
     <p>{text} {value} {text2}</p>
@@ -92,7 +100,7 @@ class App extends React.Component{
                     sum={this.state.sum}
                     laskeKeskiarvo={this.laskeKeskiarvo}
                     laskePositiiviset={this.laskePositiiviset}
-                ></Statistics>
+                ></Statistics>  
 
             </div>
         )
