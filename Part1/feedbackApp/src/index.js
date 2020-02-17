@@ -10,7 +10,7 @@ const Button = ({ onClick, text }) => {
     )
 }
 
-const Statistics = ({ good, neutral, poor, sum, laskeKeskiarvo, laskePositiiviset}) => {
+const Statistics = ({ good, neutral, poor, sum, countAverage, countPositives}) => {
     if(sum === 0) {
         return <p>ei yhtään palautetta annettu</p>
     }
@@ -21,8 +21,8 @@ const Statistics = ({ good, neutral, poor, sum, laskeKeskiarvo, laskePositiivise
                 <Statistic text='neutraali' value={neutral}></Statistic>
                 <Statistic text='huono' value={poor}></Statistic>
 
-                <Statistic text='keskiarvo' value={laskeKeskiarvo(good - poor, sum)}></Statistic>
-                <Statistic text='positiivisia' value={laskePositiiviset(good, sum)} text2='%'></Statistic>
+                <Statistic text='keskiarvo' value={countAverage(good - poor, sum)}></Statistic>
+                <Statistic text='positiivisia' value={countPositives(good, sum)} text2='%'></Statistic>
             </table>
         )
     }
@@ -50,14 +50,14 @@ class App extends React.Component {
         }
     }
 
-    laskeKeskiarvo = function(a, b) {
+    countAverage = (a, b) => {
         if(b === 0) {
             return (0).toFixed(1)
         }
         return parseFloat(a / b).toFixed(1)
     }
 
-    laskePositiiviset = function(a, b) {
+    countPositives = (a, b) => {
         if(a === 0) {
             return (0).toFixed(1)
         }
@@ -104,15 +104,12 @@ class App extends React.Component {
                     neutral={this.state.neutral}
                     poor={this.state.poor}
                     sum={this.state.sum}
-                    laskeKeskiarvo={this.laskeKeskiarvo}
-                    laskePositiiviset={this.laskePositiiviset}
+                    countAverage={this.countAverage}
+                    countPositives={this.countPositives}
                 ></Statistics> 
             </div>
         )
     }
 }
 
-ReactDOM.render(
-    <App/>,
-    document.getElementById('root')
-)
+ReactDOM.render(<App/>, document.getElementById('root'))
