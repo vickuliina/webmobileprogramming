@@ -2,37 +2,44 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
-const Button = ({ onClick, text }) => (
-    <button onClick={onClick}>
-        {text}
-    </button>
-)
+const Button = ({ onClick, text }) => {
+    return (
+        <button onClick={onClick}>
+            {text}
+        </button>
+    )
+}
 
-const Statistics = ({ good, neutral, poor, sum, laskeKeskiarvo, laskePositiiviset}) =>  {
+const Statistics = ({ good, neutral, poor, sum, laskeKeskiarvo, laskePositiiviset}) => {
     if(sum === 0) {
         return <p>ei yhtään palautetta annettu</p>
     }
     else {
         return (
-            <div>
+            <table>
                 <Statistic text='hyvä' value={good}></Statistic>
                 <Statistic text='neutraali' value={neutral}></Statistic>
                 <Statistic text='huono' value={poor}></Statistic>
 
                 <Statistic text='keskiarvo' value={laskeKeskiarvo(good - poor, sum)}></Statistic>
                 <Statistic text='positiivisia' value={laskePositiiviset(good, sum)} text2='%'></Statistic>
-            </div>
+            </table>
         )
     }
 }
 
 
 const Statistic = ({ text, value , text2 }) => (
-    <p>{text} {value} {text2}</p>
+    <tbody>
+        <tr>
+            <td>{text}</td>
+            <td>{value} {text2}</td>
+        </tr>
+    </tbody>
 )
 
 
-class App extends React.Component{
+class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -100,8 +107,7 @@ class App extends React.Component{
                     sum={this.state.sum}
                     laskeKeskiarvo={this.laskeKeskiarvo}
                     laskePositiiviset={this.laskePositiiviset}
-                ></Statistics>  
-
+                ></Statistics> 
             </div>
         )
     }

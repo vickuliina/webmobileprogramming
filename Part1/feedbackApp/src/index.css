@@ -4,6 +4,10 @@ button {
     border: 1px solid gray;
 }
 
+button:focus {
+    outline: none
+}
+
 p {
     margin: 2px;
 }
